@@ -7,6 +7,7 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
+import { LeafletMixin } from '../utils/Leaflet.js';
 
 const props = {
   content: {
@@ -25,9 +26,12 @@ export default {
     return {
     }
   },
+  mixins: [
+    LeafletMixin
+  ],
   mounted() {
-    this.mapObject = L.tooltip(this.options);
-    L.DomEvent.on(this.mapObject, this.$listeners);
+    this.mapObject = this.$leaflet().tooltip(this.options);
+    this.$leaflet().DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, props);
     this.mapObject.setContent(this.content || this.$el);
     this.parentContainer = findRealParent(this.$parent);

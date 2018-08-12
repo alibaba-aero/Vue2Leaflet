@@ -1,5 +1,6 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
+import { LeafletMixin } from '../utils/Leaflet.js';
 
 const props = {
   prefix: {
@@ -19,6 +20,9 @@ const props = {
 export default {
   name: 'LControlAttribution',
   props: props,
+  mixins: [
+    LeafletMixin,
+  ],
   mounted() {
     const options = this.options;
     const otherPropertytoInitialize = [ 'prefix', 'position'];
@@ -28,7 +32,7 @@ export default {
         options[propName] = this[propName];
       }
     }
-    this.mapObject = L.control.attribution(options);
+    this.mapObject = this.$leaflet().control.attribution(options);
     propsBinder(this, this.mapObject, props);
     this.mapObject.addTo(this.$parent.mapObject);
   },

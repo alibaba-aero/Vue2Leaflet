@@ -7,6 +7,7 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
+import { LeafletMixin } from '../utils/Leaflet.js';
 
 const props = {
   latLng: {
@@ -99,6 +100,9 @@ export default {
       ready: false,
     }
   },
+  mixins: [
+    LeafletMixin,
+  ],
   mounted() {
     const options = {};
     if (this.color) {
@@ -122,8 +126,8 @@ export default {
         options[propName] = this[propName];
       }
     }
-    this.mapObject = L.circleMarker(this.latLng, options);
-    L.DomEvent.on(this.mapObject, this.$listeners);
+    this.mapObject = this.$leaflet().circleMarker(this.latLng, options);
+    this.$leaflet().DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, props);
     this.ready = true;
     this.parentContainer = findRealParent(this.$parent);

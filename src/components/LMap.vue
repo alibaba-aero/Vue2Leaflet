@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import L from 'leaflet';
+import { LeafletMixin } from '../utils/Leaflet';
 import propsBinder from '../utils/propsBinder.js';
 
 const props = {
@@ -52,7 +52,7 @@ const props = {
   },
   crs: {
     custom: true,
-    default: () => L.CRS.EPSG3857,
+    default: () => null,
   },
   maxBoundsViscosity: {
     type: Number,
@@ -77,7 +77,10 @@ export default {
       layersToAdd: []
     }
   },
-  mounted() {
+  mixins: [
+    LeafletMixin,
+  ],
+  async mounted() {
     const options = this.options;
     Object.assign(options, {
       minZoom: this.minZoom,
@@ -85,7 +88,7 @@ export default {
       maxBounds: this.maxBounds,
       maxBoundsViscosity: this.maxBoundsViscosity,
       worldCopyJump: this.worldCopyJump,
-      crs: this.crs,
+      crs: this.crs || this.$leaflet().CRS.EPSG3857,
     });
     if (this.center != null) {
       options.center = this.center;
@@ -93,7 +96,7 @@ export default {
     if (this.zoom != null) {
       options.zoom = this.zoom;
     }
-    this.mapObject = L.map(this.$el, options);
+    this.mapObject = this.$leaflet().map(this.$el, options);
     this.setBounds(this.bounds);
     this.mapObject.on('moveend', () => {
       if (this.movingRequest != 0) {
@@ -140,7 +143,7 @@ export default {
         this.$emit('update:bounds', bounds);
       }
     });
-    L.DomEvent.on(this.mapObject, this.$listeners);
+    this.$leaflet().DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, props);
     this.ready = true;
   },
@@ -208,7 +211,7 @@ export default {
       if (!newVal) {
         return;
       }
-      if (newVal instanceof L.LatLngBounds) {
+      if (newVal instanceof this.$leaflet().LatLngBounds) {
         if (!newVal.isValid()) {
           return;
         }
@@ -246,7 +249,7 @@ export default {
       let northEastNewLat = 0;
       let northEastNewLng = 0;
       if (Array.isArray(newVal)) {
-        newVal = L.latLngBounds(newVal);
+        newVal = this.$leaflet().latLngBounds(newVal);
       }
       southWestNewLat = newVal._southWest.lat;
       southWestNewLng = newVal._southWest.lng;

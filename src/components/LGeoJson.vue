@@ -1,6 +1,7 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
+import { LeafletMixin } from '../utils/Leaflet.js';
 
 const props = {
   geojson: {
@@ -22,9 +23,12 @@ const props = {
 export default {
   name: 'LGeoJson',
   props: props,
+  mixins: [
+    LeafletMixin,
+  ],
   mounted() {
-    this.mapObject = L.geoJSON(this.geojson, this.options);
-    L.DomEvent.on(this.mapObject, this.$listeners);
+    this.mapObject = this.$leaflet().geoJSON(this.geojson, this.options);
+    this.$leaflet().DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, props);
     this.parentContainer = findRealParent(this.$parent);
     this.parentContainer.addLayer(this, !this.visible);

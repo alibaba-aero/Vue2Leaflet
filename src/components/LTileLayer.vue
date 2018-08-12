@@ -1,6 +1,7 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
+import { LeafletMixin } from '../utils/Leaflet';
 
 const props = {
   url: String,
@@ -38,7 +39,7 @@ const props = {
   },
   tileLayerClass: {
     type: Function,
-    default: L.tileLayer
+    default: undefined
   },
   layerType: {
     type: String,
@@ -58,6 +59,9 @@ const props = {
 export default {
   name: 'LTileLayer',
   props: props,
+  mixins: [
+    LeafletMixin,
+  ],
   mounted() {
     const options = this.options;
     const otherPropertytoInitialize = [ "attribution", "token", "detectRetina", "opacity", "zIndex" ];
@@ -67,8 +71,9 @@ export default {
         options[propName] = this[propName];
       }
     }
-    this.mapObject = this.tileLayerClass(this.url, options);
-    L.DomEvent.on(this.mapObject, this.$listeners);
+    const tileLayer = this.tileLayer || this.$leaflet().tileLayer;
+    this.mapObject = tileLayer(this.url, options);
+    this.$leaflet().DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, props);
     this.parentContainer = findRealParent(this.$parent);
     this.parentContainer.addLayer(this, !this.visible);

@@ -1,6 +1,7 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
+import { LeafletMixin } from '../utils/Leaflet.js';
 
 const props = {
   url: {
@@ -34,6 +35,9 @@ const props = {
 export default {
   name: 'LImageOverlay',
   props: props,
+  mixins: [
+    LeafletMixin,
+  ],
   mounted() {
     let options = {
       opacity: this.opacity,
@@ -41,8 +45,8 @@ export default {
       interactive: this.interactive,
       crossOrigin: this.crossOrigin,
     };
-    this.mapObject = L.imageOverlay(this.url, this.bounds, options);
-    L.DomEvent.on(this.mapObject, this.$listeners);
+    this.mapObject = this.$leaflet().imageOverlay(this.url, this.bounds, options);
+    this.$leaflet().DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, props);
     this.parentContainer = findRealParent(this.$parent);
     this.parentContainer.addLayer(this, !this.visible);

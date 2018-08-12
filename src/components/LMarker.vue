@@ -7,6 +7,7 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
+import Leaflet from '../utils/Leaflet';
 
 const props = {
   draggable: {
@@ -25,7 +26,7 @@ const props = {
   },
   icon: {
     custom: false,
-    default: () => new L.Icon.Default(),
+    default: null,
   },
   zIndexOffset: {
     type: Number,
@@ -45,13 +46,16 @@ export default {
       ready: false,
     }
   },
+  mixins: [
+    LeafletMixin,
+  ],
   mounted() {
     const options = this.options;
-    if (this.icon) {
-      options.icon = this.icon;
+    if (this.icon !== null) {
+      options.icon = this.icon || new this.$leaflet().Icon.Default();
     }
     options.draggable = this.draggable;
-    this.mapObject = L.marker(this.latLng, options);
+    this.mapObject = this.$leaflet().marker(this.latLng, options);
     this.mapObject.on('move', (ev) => {
       if (Array.isArray(this.latLng)) {
         this.latLng[0] = ev.latlng.lat;
@@ -61,7 +65,7 @@ export default {
         this.latLng.lng = ev.latlng.lng;
       }
     });
-    L.DomEvent.on(this.mapObject, this.$listeners);
+    this.$leaflet().DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, props);
     this.ready = true;
     this.parentContainer = findRealParent(this.$parent);

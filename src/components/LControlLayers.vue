@@ -1,5 +1,6 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
+import { LeafletMixin } from '../utils/Leaflet.js';
 
 const props = {
   collapsed: {
@@ -35,6 +36,9 @@ const props = {
 export default {
   name: 'LControlLayers',
   props: props,
+  mixins: [
+    LeafletMixin,
+  ],
   mounted() {
     const options = this.options;
     const otherPropertytoInitialize = [ 'collapsed', 'autoZIndex', 'hideSingleBase', 'sortLayers', 'sortFunction'];
@@ -44,7 +48,7 @@ export default {
         options[propName] = this[propName];
       }
     }
-    this.mapObject = L.control.layers(null, null, options);
+    this.mapObject = this.$leaflet().control.layers(null, null, options);
     propsBinder(this, this.mapObject, props);
     this.$parent.registerLayerControl(this);
   },

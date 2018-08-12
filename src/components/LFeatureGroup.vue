@@ -7,6 +7,7 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
+import { LeafletMixin } from '../utils/Leaflet.js';
 
 const props = {
   visible: {
@@ -24,10 +25,13 @@ export default {
       ready: false,
     }
   },
+  mixins: [
+    LeafletMixin,
+  ],
   mounted() {
-    this.mapObject = L.featureGroup();
+    this.mapObject = this.$leaflet().featureGroup();
     propsBinder(this, this.mapObject, props);
-    L.DomEvent.on(this.mapObject, this.$listeners);
+    this.$leaflet().DomEvent.on(this.mapObject, this.$listeners);
     this.ready = true;
     this.parentContainer = findRealParent(this.$parent);
     if (this.visible) {

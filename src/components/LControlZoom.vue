@@ -1,5 +1,6 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
+import { LeafletMixin } from '../utils/Leaflet.js';
 
 const props = {
   zoomInText: {
@@ -31,6 +32,9 @@ const props = {
 export default {
   name: 'LControlZoom',
   props: props,
+  mixins: [
+    LeafletMixin,
+  ],
   mounted() {
     const options = this.options;
     const otherPropertytoInitialize = [ "zoomInText", "zoomInTitle", "zoomOutText", "zoomOutTitle", "position" ];
@@ -40,7 +44,7 @@ export default {
         options[propName] = this[propName];
       }
     }
-    this.mapObject = L.control.zoom(options);
+    this.mapObject = this.$leaflet().control.zoom(options);
     propsBinder(this, this.mapObject, props);
     this.mapObject.addTo(this.$parent.mapObject);
   },
