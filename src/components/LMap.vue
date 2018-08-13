@@ -8,7 +8,7 @@
 import { LeafletMixin } from '../utils/Leaflet';
 import propsBinder from '../utils/propsBinder.js';
 
-const props = {
+export const props = {
   center: {
     type: [Object, Array],
     custom: true,
@@ -80,7 +80,7 @@ export default {
   mixins: [
     LeafletMixin,
   ],
-  async mounted() {
+  mounted() {
     const options = this.options;
     Object.assign(options, {
       minZoom: this.minZoom,

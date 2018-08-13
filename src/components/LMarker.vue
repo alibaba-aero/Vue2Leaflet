@@ -7,7 +7,7 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
-import Leaflet from '../utils/Leaflet';
+import { LeafletMixin } from '../utils/Leaflet';
 
 const props = {
   draggable: {

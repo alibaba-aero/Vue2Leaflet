@@ -1,8 +1,20 @@
 /**
  * 
  */
+
+const isBrowser = typeof window !== 'undefined'
+
+let $leaflet = isBrowser ? window.leaflet : null;
+
 export const LeafletMixin = {
     methods: {
-        $leaflet: () => typeof window !== 'undefined' ? window.leaflet : {}
+        $leaflet: () => $leaflet,
+        $loadLeaflet: () => {
+            if (isBrowser && !$leaflet) {
+                $leaflet = require('leaflet');
+            }
+
+            return Promise.resolve($leaflet);
+        }
     }
 }
