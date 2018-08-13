@@ -9,7 +9,8 @@ export default {
       const map = createElement(
         LMap,
         {
-          props: this.$options.propsData
+          props: this.$options.propsData,
+          on: this.$listeners
         },
         [
           this.$slots.default

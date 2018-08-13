@@ -2753,7 +2753,8 @@ var script$12 = {
 
     if (this.isMounted) {
       var map = createElement(LMap, {
-        props: this.$options.propsData
+        props: this.$options.propsData,
+        on: this.$listeners
       }, [this.$slots.default]);
       childs.push(map);
     }
