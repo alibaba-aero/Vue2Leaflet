@@ -1,5 +1,5 @@
 {
-  "name": "vue2-leaflet",
+  "name": "@alibaba-aero/vue2-leaflet",
   "version": "1.0.2",
   "description": "Vue2 leaflet library",
   "author": "Mickael Bouchaud",
@@ -12,7 +12,7 @@
   "unpkg": "dist/vue2-leaflet.min.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/KoRiGaN/Vue2Leaflet.git"
+    "url": "git://github.com/alibaba-aero/Vue2Leaflet.git"
   },
   "dependencies": {
     "leaflet": "^1.3.1"

@@ -49,8 +49,13 @@ When adding LControlAttribution or LControlZoom to your template, remember to de
 ```
 Otherwise you will end up with two zoom/attribution control.
 ## How to install
+### npm
 ``` bash
-$ npm install vue2-leaflet --save
+$ npm install @alibaba-aero/vue2-leaflet --save
+```
+### yarn
+``` bash
+$ yarn add @alibaba-aero/vue2-leaflet
 ```
 For more detailed informations you can follow the [Quick Start Guide](https://korigan.github.io/Vue2Leaflet/)
 ## Leaflet Plugins
@@ -119,7 +124,7 @@ For example if you want to listen to Vue2Leaflet.LMarker move event.
 ## Run code locally for contributors
 ``` bash
 # clone the repository
-$ git clone git@github.com:KoRiGaN/Vue2Leaflet.git
+$ git clone git@github.com:alibaba-aero/Vue2Leaflet.git
 $ cd Vue2Leaflet
 # install dependencies and build vue2-leaflet
 $ npm install
@@ -145,7 +150,7 @@ Inspired by many map wrapper (google and leaflet) for many framework (React, Ang
 
 ## Contributors
 
-Thanks goes to these [wonderful people](https://github.com/KoRiGaN/Vue2Leaflet/contributors)
+Thanks goes to these [wonderful people](https://github.com/alibaba-aero/Vue2Leaflet/contributors)
 
 ## License
 
