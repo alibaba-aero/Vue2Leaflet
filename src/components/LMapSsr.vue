@@ -1,5 +1,5 @@
 <script>
-import LMap, { props } from './LMap.vue';
+import LMap, { propsFactory } from './LMap.vue';
 import { LeafletMixin } from '../utils/Leaflet.js';
 
 export default {
@@ -28,7 +28,7 @@ export default {
       childs
     )
   },
-  props: props,
+  props: propsFactory(),
   components: {
     LMap
   },

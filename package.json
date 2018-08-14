@@ -5,7 +5,8 @@
   "author": "Mickael Bouchaud",
   "license": "MIT",
   "scripts": {
-    "build": "bili"
+    "build": "bili",
+    "prepublish": "npm run build"
   },
   "main": "dist/vue2-leaflet.cjs.js",
   "module": "dist/vue2-leaflet.es.js",
@@ -14,6 +15,10 @@
     "type": "git",
     "url": "git://github.com/alibaba-aero/Vue2Leaflet.git"
   },
+  "files": [
+    "src",
+    "dist"
+  ],
   "dependencies": {
     "leaflet": "^1.3.1"
   },

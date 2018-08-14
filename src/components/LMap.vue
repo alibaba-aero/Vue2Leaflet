@@ -8,7 +8,7 @@
 import { LeafletMixin } from '../utils/Leaflet';
 import propsBinder from '../utils/propsBinder.js';
 
-export const props = {
+export const propsFactory = () => ({
   center: {
     type: [Object, Array],
     custom: true,
@@ -62,11 +62,11 @@ export const props = {
     type: Object,
     default: () => ({}),
   },
-};
+});
 
 export default {
   name: 'LMap',
-  props: props,
+  props: propsFactory(),
   data() {
     return {
       ready: false,
@@ -144,7 +144,7 @@ export default {
       }
     });
     this.$leaflet().DomEvent.on(this.mapObject, this.$listeners);
-    propsBinder(this, this.mapObject, props);
+    propsBinder(this, this.mapObject, propsFactory());
     this.ready = true;
   },
   methods: {
