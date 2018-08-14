@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "bili",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "main": "dist/vue2-leaflet.cjs.js",
   "module": "dist/vue2-leaflet.es.js",
