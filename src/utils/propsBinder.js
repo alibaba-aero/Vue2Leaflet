@@ -18,7 +18,7 @@ export default (vueElement, leafletElement, props, options) => {
       });
     } else if (setMethodName == 'setOptions') {
       vueElement.$watch(key, (newVal, oldVal) => {
-        this.$leaflet().setOptions(leafletElement, newVal);
+        vueElement.$leaflet().setOptions(leafletElement, newVal);
       }, {
         deep: deepValue
       });
