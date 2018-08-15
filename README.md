@@ -5,17 +5,14 @@
 <a href="https://travis-ci.org/KoRiGaN/Vue2Leaflet">
   <img src="https://travis-ci.org/KoRiGaN/Vue2Leaflet.svg?branch=master" alt="Downloads">
 </a>
-<a href="https://www.npmjs.com/package/vue2-leaflet">
-  <img src="https://img.shields.io/npm/dt/vue2-leaflet.svg" alt="Downloads">
+<a href="https://www.npmjs.com/package/@alibaba-aero/vue2-leaflet">
+  <img src="https://img.shields.io/npm/dw/@alibaba-aero/vue2-leaflet.svg" alt="Downloads">
 </a>
-<a href="https://www.npmjs.com/package/vue2-leaflet">
-  <img src="https://img.shields.io/npm/v/vue2-leaflet.svg" alt="Version">
+<a href="https://www.npmjs.com/package/@alibaba-aero/vue2-leaflet">
+  <img src="https://img.shields.io/npm/v/@alibaba-aero/vue2-leaflet.svg" alt="Version">
 </a>
-<a href="https://www.npmjs.com/package/vue2-leaflet">
-  <img src="https://img.shields.io/npm/l/vue2-leaflet.svg" alt="License">
-</a>
-<a href="https://gitter.im/Vue2Leaflet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge">
-  <img src="https://badges.gitter.im/Vue2Leaflet/Lobby.svg" alt="Gitter">
+<a href="https://www.npmjs.com/package/@alibaba-aero/vue2-leaflet">
+  <img src="https://img.shields.io/npm/l/@alibaba-aero/vue2-leaflet.svg" alt="License">
 </a>
 
 Vue2Leaflet is a JavaScript library for the [Vue](https://vuejs.org/) framework that wraps [Leaflet](http://leafletjs.com/) making it easy to create reactive maps.
