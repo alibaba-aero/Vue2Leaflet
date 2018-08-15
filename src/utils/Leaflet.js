@@ -4,7 +4,7 @@
 
 const isBrowser = typeof window !== 'undefined'
 
-let $leaflet = isBrowser ? window.leaflet : null;
+let $leaflet = isBrowser ? window.L : null;
 
 export const LeafletMixin = {
     methods: {
