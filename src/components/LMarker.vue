@@ -25,6 +25,7 @@ const props = {
     custom: true,
   },
   icon: {
+    type: Object,
     custom: false,
     default: null,
   },
@@ -52,7 +53,8 @@ export default {
   mounted() {
     const options = this.options;
     if (this.icon !== null) {
-      options.icon = this.icon || new this.$leaflet().Icon.Default();
+      const Icon = this.$leaflet().Icon;
+      options.icon = new Icon(this.icon);
     }
     options.draggable = this.draggable;
     this.mapObject = this.$leaflet().marker(this.latLng, options);
