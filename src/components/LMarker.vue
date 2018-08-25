@@ -26,7 +26,7 @@ const props = {
   },
   icon: {
     type: Object,
-    custom: false,
+    custom: true,
     default: null,
   },
   zIndexOffset: {
@@ -90,6 +90,12 @@ export default {
         } else {
           this.parentContainer.removeLayer(this);
         }
+      }
+    },
+    setIcon(icon) {
+      if (icon !== null) {
+        const Icon = this.$leaflet().Icon;
+        this.mapObject.setIcon(new Icon(icon));
       }
     },
     setLatLng(newVal) {
