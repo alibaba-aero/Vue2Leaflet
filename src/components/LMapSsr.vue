@@ -41,7 +41,8 @@ export default {
     };
   },
   async mounted() {
-    await this.$loadLeaflet();
+    const $leaflet = await this.$loadLeaflet();
+    this.$emit('load', $leaflet)
     this.isMounted = true;
   }
 }

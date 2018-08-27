@@ -146,6 +146,7 @@ export default {
     this.$leaflet().DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, propsFactory());
     this.ready = true;
+    this.$emit('mounted', this);
   },
   methods: {
     registerLayerControl(lControlLayers) {
